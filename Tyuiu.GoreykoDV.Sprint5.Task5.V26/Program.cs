@@ -1,5 +1,6 @@
 ﻿using Tyuiu.GoreykoDV.Sprint5.Task5.V26.Lib;
-
+using System;
+using System.IO;
 
 namespace Tyuiu.GoreykoDV.Sprint5.Task5.V26
 {
@@ -13,23 +14,22 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task5.V26
 
             Console.WriteLine("****************************************************************************");
             Console.WriteLine("* Спринт #5                                                                *");
-            Console.WriteLine("* Тема: тение набора данных из текстового файла                            *");
+            Console.WriteLine("* Тема: Чтение набора данных из текстового файла                           *");
             Console.WriteLine("* Задание #5                                                               *");
             Console.WriteLine("* Вариант #26                                                              *");
             Console.WriteLine("* Выполнил: Горейко Дарья Владимировна | РППб-26-1                         *");
             Console.WriteLine("****************************************************************************");
             Console.WriteLine("* УСЛОВИЕ:                                                                 *");
-            Console.WriteLine("* Дано выражение , вычислить его значение при x = 2,                       *");
+            Console.WriteLine("* Дано выражение, вычислить его значение при x = 2,                        *");
             Console.WriteLine("* результат сохранить в текстовый файл OutPutFileTask0.txt                 *");
             Console.WriteLine("* и вывести на консоль.                                                    *");
             Console.WriteLine("****************************************************************************");
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                         *");
             Console.WriteLine("****************************************************************************");
 
-            string path = $@"{Directory.GetCurrentDirectory()}\InPutDataFileTask5V26.txt";
+            string path = Path.Combine(AppContext.BaseDirectory, "InPutDataFileTask5V26.txt");
 
             Console.WriteLine("Данные находятся в файле: " + path);
-
 
             Console.WriteLine();
             Console.WriteLine("****************************************************************************");

@@ -1,5 +1,6 @@
 ﻿using tyuiu.cources.programming.interfaces.Sprint5;
 
+using System;
 using System.IO;
 
 namespace Tyuiu.GoreykoDV.Sprint5.Task1.V27.Lib
@@ -8,22 +9,15 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task1.V27.Lib
     {
         public string SaveToFileTextData(int startValue, int stopValue)
         {
-            string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask1.txt";
+            string fileName = "OutPutFileTask1.txt";
+            string path = Path.Combine(AppContext.BaseDirectory, fileName);
 
-            FileInfo fileInfo = new FileInfo(path);
-            bool fileExists = fileInfo.Exists;
-
-            if (fileExists)
-            {
-                File.Delete(path);
-            }
-
-            double y;
-            string strY;
+            string content = "";
 
             for (int x = startValue; x <= stopValue; x++)
             {
                 double z = Math.Sin(x) - 3 + x;
+                double y;
 
                 if (z == 0)
                 {
@@ -33,17 +27,27 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task1.V27.Lib
                 {
                     y = Math.Round((3 * x - 1.5) / z + 2, 2);
                 }
-                strY = Convert.ToString(y);
 
                 if (x != stopValue)
                 {
-                    File.AppendAllText(path, strY + Environment.NewLine);
+                    content += y.ToString() + Environment.NewLine;
                 }
                 else
                 {
-                    File.AppendAllText(path, strY);
+                    content += y.ToString();
                 }
             }
+
+            try
+            {
+                File.WriteAllText(path, content);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                path = Path.Combine(Path.GetTempPath(), fileName);
+                File.WriteAllText(path, content);
+            }
+
             return path;
         }
     }

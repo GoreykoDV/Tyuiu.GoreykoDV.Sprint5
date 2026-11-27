@@ -1,5 +1,6 @@
 ﻿using tyuiu.cources.programming.interfaces.Sprint5;
 
+using System;
 using System.IO;
 
 namespace Tyuiu.GoreykoDV.Sprint5.Task2.V28.Lib
@@ -8,15 +9,8 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task2.V28.Lib
     {
         public string SaveToFileTextData(int[,] matrix)
         {
-            string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask2.csv";
-
-            FileInfo fileInfo = new FileInfo(path);
-            bool fileExists = fileInfo.Exists;
-
-            if (fileExists)
-            {
-                File.Delete(path);
-            }
+            string fileName = "OutPutFileTask2.csv";
+            string path = Path.Combine(AppContext.BaseDirectory, fileName);
 
             int rows = matrix.GetUpperBound(0) + 1;
             int columns = matrix.Length / rows;
@@ -36,35 +30,39 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task2.V28.Lib
                 }
             }
 
-            string str = "";
+            string content = "";
 
             for (int i = 0; i < rows; ++i)
             {
-                for (int j = 0;j < columns; ++j)
+                for (int j = 0; j < columns; ++j)
                 {
-                    if (j != columns-1)
+                    if (j != columns - 1)
                     {
-                        str = str + matrix[i, j] + ";";
+                        content += matrix[i, j] + ";";
                     }
                     else
                     {
-                        str = str + matrix[i, j];
+                        content += matrix[i, j];
                     }
                 }
-                if (i != rows)
-                {
-                    File.AppendAllText(path, str + Environment.NewLine);
-                }
-                else
-                {
-                    File.AppendAllText(path, str);
-                }
 
-                str = "";
+                if (i != rows - 1)
+                {
+                    content += Environment.NewLine;
+                }
+            }
+
+            try
+            {
+                File.WriteAllText(path, content);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                path = Path.Combine(Path.GetTempPath(), fileName);
+                File.WriteAllText(path, content);
             }
 
             return path;
-
         }
     }
 }

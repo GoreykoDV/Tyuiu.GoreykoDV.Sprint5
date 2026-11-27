@@ -1,8 +1,6 @@
 ﻿using tyuiu.cources.programming.interfaces.Sprint5;
-
-using System.Text;
-using System;
 using System.IO;
+using System.Text;
 
 namespace Tyuiu.GoreykoDV.Sprint5.Task7.V17.Lib
 {
@@ -10,12 +8,12 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task7.V17.Lib
     {
         public string LoadDataAndSave(string path)
         {
-            string pathSaveFile = $@"{Directory.GetCurrentDirectory()}\OutPutDataFileTask7V17.txt";
-            
+            string fileName = "OutPutDataFileTask7V17.txt";
+            string pathSaveFile = Path.Combine(AppContext.BaseDirectory, fileName);
+
             FileInfo fileInfo = new FileInfo(path);
             bool fileExists = fileInfo.Exists;
-                        
-            string strLine = "";
+
             StringBuilder result = new StringBuilder();
             using (StreamReader reader = new StreamReader(path))
             {

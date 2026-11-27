@@ -1,5 +1,4 @@
 ﻿using tyuiu.cources.programming.interfaces.Sprint5;
-
 using System.IO;
 
 namespace Tyuiu.GoreykoDV.Sprint5.Task6.V17.Lib
@@ -14,7 +13,7 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task6.V17.Lib
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    int i = 0;                          
+                    int i = 0;
                     while (i < line.Length)
                     {
                         if (line[i] == ' ')
@@ -28,7 +27,7 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task6.V17.Lib
 
                             if (groupLength > 1)
                             {
-                                count += groupLength;
+                                count++;   
                             }
                         }
                         else

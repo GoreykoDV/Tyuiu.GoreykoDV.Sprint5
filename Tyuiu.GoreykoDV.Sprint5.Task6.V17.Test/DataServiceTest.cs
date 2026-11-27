@@ -15,7 +15,7 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task6.V17.Test
             string path = @"C:\Users\darya\source\repos\Tyuiu.GoreykoDV.Sprint5\Tyuiu.GoreykoDV.Sprint5.Task6.V17\bin\Debug\net8.0\InPutDataFileTask6V17.txt";
 
             var res = ds.LoadFromDataFile(path);
-            int wait = 4;
+            int wait = 2;
             Assert.AreEqual(wait, res);
         }
 

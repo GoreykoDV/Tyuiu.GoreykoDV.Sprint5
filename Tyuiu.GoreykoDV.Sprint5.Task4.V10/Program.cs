@@ -1,4 +1,6 @@
 ﻿using Tyuiu.GoreykoDV.Sprint5.Task4.V10.Lib;
+using System;
+using System.IO;
 
 namespace Tyuiu.GoreykoDV.Sprint5.Task4.V10
 {
@@ -6,7 +8,6 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task4.V10
     {
         static void Main(string[] args)
         {
-            
             DataService ds = new DataService();
 
             Console.Title = "Спринт #5 | Выполнил: Горейко Д.В. | РППб-26-1";
@@ -19,17 +20,16 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task4.V10
             Console.WriteLine("* Выполнил: Горейко Дарья Владимировна | РППб-26-1                         *");
             Console.WriteLine("****************************************************************************");
             Console.WriteLine("* УСЛОВИЕ:                                                                 *");
-            Console.WriteLine("* Дано выражение , вычислить его значение при x = 2,                       *");
+            Console.WriteLine("* Дано выражение, вычислить его значение при x = 2,                        *");
             Console.WriteLine("* результат сохранить в текстовый файл OutPutFileTask0.txt                 *");
             Console.WriteLine("* и вывести на консоль.                                                    *");
             Console.WriteLine("****************************************************************************");
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                         *");
             Console.WriteLine("****************************************************************************");
 
-            string path = $@"{Directory.GetCurrentDirectory()}\InPutDataFileTask4V10.txt";
+            string path = Path.Combine(AppContext.BaseDirectory, "InPutDataFileTask4V10.txt");
 
             Console.WriteLine("Данные находятся в файле: " + path);
-
 
             Console.WriteLine();
             Console.WriteLine("****************************************************************************");
