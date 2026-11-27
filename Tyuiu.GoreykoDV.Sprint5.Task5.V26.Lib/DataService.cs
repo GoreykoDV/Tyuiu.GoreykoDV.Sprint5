@@ -1,42 +1,52 @@
-﻿using System.Globalization;
+﻿using tyuiu.cources.programming.interfaces.Sprint5;
+using System;
+using System.Globalization;
+using System.IO;
 
-public double LoadFromDataFile(string path)
+namespace Tyuiu.GoreykoDV.Sprint5.Task5.V26.Lib
 {
-    double sumPositive = 0;
-    double sumNegative = 0;
-
-    using (StreamReader reader = new StreamReader(path))
+    public class DataService : ISprint5Task5V26
     {
-        string line;
-        while ((line = reader.ReadLine()) != null)
+        public double LoadFromDataFile(string path)
         {
-            
-            string[] parts = line.Split(
-                new char[] { ' ', '\t', ';' },
-                StringSplitOptions.RemoveEmptyEntries
-            );
+            double sumPositive = 0;
+            double sumNegative = 0;
 
-            foreach (string part in parts)
+            using (StreamReader reader = new StreamReader(path))
             {
-                string s = part.Trim().Replace(',', '.');
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    
+                    string[] parts = line.Split(
+                        new char[] { ' ', '\t', ';' },
+                        StringSplitOptions.RemoveEmptyEntries
+                    );
 
-                
-                double num = double.Parse(s, CultureInfo.InvariantCulture);
+                    foreach (string part in parts)
+                    {
+                        
+                        string s = part.Trim().Replace(',', '.');
 
-               
-                num = Math.Round(num, 3);
+                        
+                        double num = double.Parse(s, CultureInfo.InvariantCulture);
 
-                if (num > 0)
-                    sumPositive += num;
-                else if (num < 0)
-                    sumNegative += num;
+                        
+                        num = Math.Round(num, 3);
+
+                        if (num > 0)
+                            sumPositive += num;
+                        else if (num < 0)
+                            sumNegative += num;
+                    }
+                }
             }
+
+            
+            double result = sumPositive - sumNegative;
+
+            
+            return Math.Round(result, 3);
         }
     }
-
-    
-    double result = sumPositive - sumNegative;
-
-    
-    return Math.Round(result, 3);
 }
