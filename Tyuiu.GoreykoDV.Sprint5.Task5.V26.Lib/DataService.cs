@@ -26,18 +26,17 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task5.V26.Lib
                     {
                         string s = part.Trim().Replace(',', '.');
                         double num = double.Parse(s, CultureInfo.InvariantCulture);
-
-                        num = Math.Round(num, 3);
-
+                                                
                         if (num > 0)
                             sumPositive += num;
                         else if (num < 0)
-                            sumNegative += num;  
+                            sumNegative += num;   
                     }
                 }
             }
-                        
-            return Math.Round(sumPositive - Math.Abs(sumNegative), 3);
+
+            
+            return Math.Round(sumPositive - sumNegative, 3);
         }
     }
 }
