@@ -1,4 +1,5 @@
 ﻿using tyuiu.cources.programming.interfaces.Sprint5;
+using System;
 using System.IO;
 using System.Text;
 
@@ -11,9 +12,6 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task7.V17.Lib
             string fileName = "OutPutDataFileTask7V17.txt";
             string pathSaveFile = Path.Combine(AppContext.BaseDirectory, fileName);
 
-            FileInfo fileInfo = new FileInfo(path);
-            bool fileExists = fileInfo.Exists;
-
             StringBuilder result = new StringBuilder();
             using (StreamReader reader = new StreamReader(path))
             {
@@ -25,7 +23,15 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task7.V17.Lib
                 }
             }
 
-            File.WriteAllText(pathSaveFile, result.ToString());
+            try
+            {
+                File.WriteAllText(pathSaveFile, result.ToString());
+            }
+            catch (UnauthorizedAccessException)
+            {
+                pathSaveFile = Path.Combine(Path.GetTempPath(), fileName);
+                File.WriteAllText(pathSaveFile, result.ToString());
+            }
 
             return pathSaveFile;
         }

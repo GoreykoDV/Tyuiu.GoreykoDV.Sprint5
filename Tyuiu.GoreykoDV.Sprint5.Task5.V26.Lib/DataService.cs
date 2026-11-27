@@ -1,6 +1,6 @@
 ﻿using tyuiu.cources.programming.interfaces.Sprint5;
-
-using System.Text;
+using System;
+using System.Globalization;
 using System.IO;
 
 namespace Tyuiu.GoreykoDV.Sprint5.Task5.V26.Lib
@@ -11,7 +11,6 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task5.V26.Lib
         {
             double sumPositive = 0;
             double sumNegative = 0;
-            double res = 0;
 
             using (StreamReader reader = new StreamReader(path))
             {
@@ -24,8 +23,11 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task5.V26.Lib
                     );
 
                     foreach (string part in parts)
-                    {
-                        double num = Convert.ToDouble(part);
+                    {                        
+                        string s = part.Trim().Replace(',', '.');
+                        double num = double.Parse(s, CultureInfo.InvariantCulture);
+                                                
+                        num = Math.Round(num, 3);
 
                         if (num > 0)
                             sumPositive += num;
@@ -33,9 +35,9 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task5.V26.Lib
                             sumNegative += num;
                     }
                 }
-                res = Math.Round(sumPositive - sumNegative, 3);
-                return res;
             }
+
+            return Math.Round(sumPositive - sumNegative, 3);
         }
     }
 }

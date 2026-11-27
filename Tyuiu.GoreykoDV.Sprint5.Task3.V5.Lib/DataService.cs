@@ -1,6 +1,7 @@
 ﻿using tyuiu.cources.programming.interfaces.Sprint5;
-using System.Text;
+using System;
 using System.IO;
+using System.Text;
 
 namespace Tyuiu.GoreykoDV.Sprint5.Task3.V5.Lib
 {
@@ -11,7 +12,8 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task3.V5.Lib
             string fileName = "OutPutFileTask3.bin";
             string path = Path.Combine(AppContext.BaseDirectory, fileName);
 
-            double z = 2 * Math.Pow(x, 3) + 1 / 2 * Math.Pow(x, 2) - 3.5 * x + 2;
+            double z = 2 * Math.Pow(x, 3) + 0.5 * Math.Pow(x, 2) - 3.5 * x + 2;
+           
             z = Math.Round(z, 3);
 
             try
