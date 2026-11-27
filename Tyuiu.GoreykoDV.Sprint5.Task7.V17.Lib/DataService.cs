@@ -18,7 +18,7 @@ namespace Tyuiu.GoreykoDV.Sprint5.Task7.V17.Lib
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    string processedLine = line.Replace("нн", "н");
+                    string processedLine = line.Replace("нн", "");
                     result.AppendLine(processedLine);
                 }
             }
